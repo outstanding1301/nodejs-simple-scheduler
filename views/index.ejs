@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <title>할 일 목록</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>할 일 목록</h1>
+      <div class="todo_date">
+        <div class="lrbtn"><</div>
+        <p class="date"><%= date %></p>
+        <div class="lrbtn">></div>
+      </div>
+      <div class="bar"></div>
+       <div class="todo_list">
+
+
+       </div>
+       <div class="bar"></div>
+       <div class="todo_add">
+           <input type="text" class="todo_input">
+           <div class="todo_btn_add" onclick="add()">등록</div>
+       </div>
+       <div class="result"></div>
+    </div>
+    <script type="text/javascript">
+      function reload(){
+        fetch('reload', {
+          method: 'post'
+        }).then((res)=>{
+          res.text().then((text)=>{
+            document.querySelector('.todo_list').innerHTML = text
+          }
+        )}
+      )}
+
+      reload();
+
+      function add(){
+        const what = document.querySelector('.todo_input').value;
+        if(!what){
+          alert('할 일을 입력해주세요!');
+          return;
+        }
+
+        fetch('add', {
+          method: 'post',
+          headers: {'Content-type':'application/json'},
+          body: JSON.stringify({"what":what, "done":false})
+        }).then((res)=>{
+          res.text().then((text)=>{
+            const json = JSON.parse(text);
+            if(json.result === "success"){
+              reload();
+            }else{
+              alert("등록에 실패했습니다!\n이유:"+json.reason)
+            }
+          }
+        )}
+      )}
+
+      function del(id){
+
+        fetch('delete', {
+          method: 'post',
+          headers: {'Content-type':'application/json'},
+          body: JSON.stringify({"id":id})
+        }).then((res)=>{
+          res.text().then((text)=>{
+            const json = JSON.parse(text);
+            if(json.result === "success"){
+              reload();
+            }else{
+              alert("삭제에 실패했습니다!\n이유:"+json.reason)
+            }
+          }
+        )}
+      )}
+
+
+      function done(id){
+
+        fetch('done', {
+          method: 'post',
+          headers: {'Content-type':'application/json'},
+          body: JSON.stringify({"id":id})
+        }).then((res)=>{
+          res.text().then((text)=>{
+            const json = JSON.parse(text);
+            if(json.result === "success"){
+              reload();
+            }else{
+              alert("체크에 실패했습니다!\n이유:"+json.reason)
+            }
+          }
+        )}
+      )}
+
+            function undone(id){
+
+              fetch('undone', {
+                method: 'post',
+                headers: {'Content-type':'application/json'},
+                body: JSON.stringify({"id":id})
+              }).then((res)=>{
+                res.text().then((text)=>{
+                  const json = JSON.parse(text);
+                  if(json.result === "success"){
+                    reload();
+                  }else{
+                    alert("체크해제에 실패했습니다!\n이유:"+json.reason)
+                  }
+                }
+              )}
+            )}
+
+    </script>
+  </body>
+</html>

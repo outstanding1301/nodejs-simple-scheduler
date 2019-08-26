@@ -1,0 +1,311 @@
+body{
+  background-color: rgb(84, 180, 140);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family :'나눔고딕', 'Malgun Gothic', sans-serif;
+
+}
+
+.container{
+  width: 480px;
+  height: 460px;
+  padding: 25px;
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+  background-color: rgba(255, 255, 255);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.todo_list{
+  overflow-y: scroll;
+  width: 480px;
+  height: 300px;
+  background-color: white;
+}
+
+.todo{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.todo_done{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: rgb(195, 195, 195);
+}
+
+.todo_add{
+  display: flex;
+  margin-top: 10px;
+}
+
+.date{
+  display: inline-block;
+}
+
+.todo_what{
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  font-size: 15px;
+}
+
+.todo_what_done{
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  text-decoration: line-through;
+  color: white;
+  font-size: 15px;
+}
+
+.todo_input{
+  flex: 1;
+  margin: 0px;
+  padding: 0px;
+  font-size: 15px;
+  border: 1px solid rgb(52, 161, 115);
+}
+
+.todo_box_container{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 360px;
+  height: 30px;
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.todo_box_container:hover .check{
+  opacity: 1;
+}
+
+.todo_done_box_container{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 360px;
+  height: 30px;
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.todo_done:hover .check_done{
+  opacity: 0;
+}
+
+.todo_done:hover{
+  background-color: rgb(150, 235, 199);
+}
+
+.todo_done:hover .todo_what_done{
+  text-decoration: none;
+  color: rgb(83, 83, 83);
+}
+
+.todo:hover{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: rgb(150, 235, 199);
+}
+
+.todo_btn_container{
+  flex: 0.5;
+  display: flex;
+  height: 30px;
+  width: 80px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.todo_done_btn_container{
+  flex: 0.207;
+  display: flex;
+  height: 30px;
+  width: 80px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.todo_btn_edit{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  background: rgb(52, 161, 115);
+  border-radius: 3px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+.todo_btn_edit:hover{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    background: rgb(35, 130, 90);
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+.todo_btn_delete{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  background: rgb(205, 83, 83);
+  border-radius: 3px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.todo_btn_delete:hover{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    background: rgb(175, 56, 56);
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.todo_done_btn_delete{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  background: rgb(92, 92, 92);
+  border-radius: 3px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.todo_done_btn_delete:hover{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  background: rgb(175, 56, 56);
+  border-radius: 3px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+h1 {
+  margin: 10px;
+  color: rgb(21, 51, 39);
+}
+
+.todo_date{
+  display: flex;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.date{
+  flex: 1;
+  display: inline-block;
+  color: rgb(36, 75, 59);
+  font-size: 18pt;
+  height: 30px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.lrbtn{
+  flex: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: rgb(52, 161, 115);
+  border-radius: 3px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lrbtn:hover{
+  flex: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background: rgb(35, 130, 90);
+  border-radius: 3px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.todo_btn_add{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    background: rgb(52, 161, 115);
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.todo_btn_add:hover{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-left: 1rem;
+    background: rgb(35, 130, 90);
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bar{
+  height: 1px;
+  margin: 5px;
+  background-color: rgb(112, 205, 166);
+}
+
+.check{
+  margin-right: 5px;
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.check_done{
+  margin-right: 5px;
+  color: white;
+  font-size: 24px;
+  opacity: 1;
+  cursor: pointer;
+}

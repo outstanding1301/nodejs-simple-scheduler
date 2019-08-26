@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-scheduler",
+  "version": "1.0.0",
+  "description": "scheduler with node.js + express + fetch API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/outstanding1301/nodejs-simple-scheduler.git"
+  },
+  "keywords": [
+    "outstandingboy"
+  ],
+  "author": "outstandingboy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/outstanding1301/nodejs-simple-scheduler/issues"
+  },
+  "homepage": "https://github.com/outstanding1301/nodejs-simple-scheduler#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1"
+  }
+}
