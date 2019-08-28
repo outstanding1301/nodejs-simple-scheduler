@@ -56,6 +56,15 @@ body{
   font-size: 15px;
 }
 
+
+.todo_edit_input{
+  flex: 1;
+  display: inline-block;
+  margin: 0px;
+  padding: 5px;
+  font-size: 15px;
+}
+
 .todo_what_done{
   display: inline-block;
   margin: 0px;
@@ -81,6 +90,27 @@ body{
   height: 30px;
   margin: 0px;
   padding: 0px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.todo_edit{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: rgb(161, 204, 130);
+}
+
+
+.todo_edit_box_container{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 360px;
+  height: 30px;
+  margin: 0px;
+  padding: 0px;
+  padding-right: 5px;
   text-align: left;
   cursor: pointer;
 }
@@ -115,9 +145,6 @@ body{
 }
 
 .todo:hover{
-  display: flex;
-  align-items: center;
-  padding: 5px;
   background-color: rgb(150, 235, 199);
 }
 
@@ -152,17 +179,25 @@ body{
   cursor: pointer;
 }
 .todo_btn_edit:hover{
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: 1rem;
     background: rgb(35, 130, 90);
-    border-radius: 3px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
 }
+
+.todo_btn_modify{
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 1rem;
+  background: rgb(52, 161, 115);
+  border-radius: 3px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+.todo_btn_modify:hover{
+    background: rgb(35, 130, 90);
+}
+
 .todo_btn_delete{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -177,16 +212,7 @@ body{
 }
 
 .todo_btn_delete:hover{
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: 1rem;
     background: rgb(175, 56, 56);
-    border-radius: 3px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
 }
 
 .todo_done_btn_delete{
@@ -203,16 +229,7 @@ body{
 }
 
 .todo_done_btn_delete:hover{
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-left: 1rem;
   background: rgb(175, 56, 56);
-  border-radius: 3px;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
 }
 
 h1 {
@@ -250,16 +267,7 @@ h1 {
 }
 
 .lrbtn:hover{
-  flex: 0;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
   background: rgb(35, 130, 90);
-  border-radius: 3px;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
 }
 
 .todo_btn_add{
@@ -276,16 +284,7 @@ h1 {
 }
 
 .todo_btn_add:hover{
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin-left: 1rem;
     background: rgb(35, 130, 90);
-    border-radius: 3px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
 }
 
 .bar{

@@ -1,121 +1,160 @@
 <!DOCTYPE html>
 <html lang="ko" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="/css/index.css">
-    <title>할 일 목록</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>할 일 목록</h1>
-      <div class="todo_date">
-        <div class="lrbtn"><</div>
-        <p class="date"><%= date %></p>
-        <div class="lrbtn">></div>
-      </div>
-      <div class="bar"></div>
-       <div class="todo_list">
-
-
-       </div>
-       <div class="bar"></div>
-       <div class="todo_add">
-           <input type="text" class="todo_input">
-           <div class="todo_btn_add" onclick="add()">등록</div>
-       </div>
-       <div class="result"></div>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/css/index.css">
+  <title>할 일 목록</title>
+</head>
+<body>
+  <div class="container">
+    <h1>할 일 목록</h1>
+    <div class="todo_date">
+      <div class="lrbtn"><</div>
+      <p class="date"><%= date %></p>
+      <div class="lrbtn">></div>
     </div>
-    <script type="text/javascript">
-      function reload(){
-        fetch('reload', {
-          method: 'post'
-        }).then((res)=>{
-          res.text().then((text)=>{
-            document.querySelector('.todo_list').innerHTML = text
-          }
-        )}
-      )}
+    <div class="bar"></div>
+    <div class="todo_list">
 
-      reload();
 
-      function add(){
-        const what = document.querySelector('.todo_input').value;
-        if(!what){
-          alert('할 일을 입력해주세요!');
-          return;
+    </div>
+    <div class="bar"></div>
+    <div class="todo_add">
+      <input type="text" class="todo_input">
+      <div class="todo_btn_add" onclick="add()">등록</div>
+    </div>
+    <div class="result"></div>
+  </div>
+  <script type="text/javascript">
+  function reload(){
+    fetch('reload', {
+      method: 'post'
+    }).then((res)=>{
+      res.text().then((text)=>{
+        document.querySelector('.todo_list').innerHTML = text
+      }
+    )}
+  )}
+
+  reload();
+
+  function add(){
+    const what = document.querySelector('.todo_input').value;
+    if(!what){
+      alert('할 일을 입력해주세요!');
+      return;
+    }
+
+    fetch('add', {
+      method: 'post',
+      headers: {'Content-type':'application/json'},
+      body: JSON.stringify({"what":what, "done":false})
+    }).then((res)=>{
+      res.text().then((text)=>{
+        const json = JSON.parse(text);
+        if(json.result === "success"){
+          reload();
+          document.querySelector('.todo_input').value = "";
+        }else{
+          alert("등록에 실패했습니다!\n이유:"+json.reason)
         }
+      }
+    )}
+  )}
 
-        fetch('add', {
-          method: 'post',
-          headers: {'Content-type':'application/json'},
-          body: JSON.stringify({"what":what, "done":false})
-        }).then((res)=>{
-          res.text().then((text)=>{
-            const json = JSON.parse(text);
-            if(json.result === "success"){
-              reload();
-            }else{
-              alert("등록에 실패했습니다!\n이유:"+json.reason)
-            }
-          }
-        )}
-      )}
+  function del(id){
 
-      function del(id){
+    fetch('delete', {
+      method: 'post',
+      headers: {'Content-type':'application/json'},
+      body: JSON.stringify({"id":id})
+    }).then((res)=>{
+      res.text().then((text)=>{
+        const json = JSON.parse(text);
+        if(json.result === "success"){
+          reload();
+        }else{
+          alert("삭제에 실패했습니다!\n이유:"+json.reason)
+        }
+      }
+    )}
+  )}
 
-        fetch('delete', {
-          method: 'post',
-          headers: {'Content-type':'application/json'},
-          body: JSON.stringify({"id":id})
-        }).then((res)=>{
-          res.text().then((text)=>{
-            const json = JSON.parse(text);
-            if(json.result === "success"){
-              reload();
-            }else{
-              alert("삭제에 실패했습니다!\n이유:"+json.reason)
-            }
-          }
-        )}
-      )}
+  function edit(id){
 
+    fetch('edit', {
+      method: 'post',
+      headers: {'Content-type':'application/json'},
+      body: JSON.stringify({"id":id})
+    }).then((res)=>{
+      res.text().then((text)=>{
+        const json = JSON.parse(text);
+        if(json.result === "success"){
+          reload();
+        }else{
+          alert("수정에 실패했습니다!\n이유:"+json.reason)
+        }
+      }
+    )}
+  )}
 
-      function done(id){
+  function modify(id){
+    const what = document.querySelector('#edit_input_'+id).value;
+    if(!what){
+      alert('할 일을 입력해주세요!');
+      return;
+    }
+    
+    fetch('modify', {
+      method: 'post',
+      headers: {'Content-type':'application/json'},
+      body: JSON.stringify({"id":id, "what": what})
+    }).then((res)=>{
+      res.text().then((text)=>{
+        const json = JSON.parse(text);
+        if(json.result === "success"){
+          reload();
+        }else{
+          alert("수정에 실패했습니다!\n이유:"+json.reason)
+        }
+      }
+    )}
+  )}
 
-        fetch('done', {
-          method: 'post',
-          headers: {'Content-type':'application/json'},
-          body: JSON.stringify({"id":id})
-        }).then((res)=>{
-          res.text().then((text)=>{
-            const json = JSON.parse(text);
-            if(json.result === "success"){
-              reload();
-            }else{
-              alert("체크에 실패했습니다!\n이유:"+json.reason)
-            }
-          }
-        )}
-      )}
+  function done(id){
+    fetch('done', {
+      method: 'post',
+      headers: {'Content-type':'application/json'},
+      body: JSON.stringify({"id":id})
+    }).then((res)=>{
+      res.text().then((text)=>{
+        const json = JSON.parse(text);
+        if(json.result === "success"){
+          reload();
+        }else{
+          alert("체크에 실패했습니다!\n이유:"+json.reason)
+        }
+      }
+    )}
+  )}
 
-            function undone(id){
+  function undone(id){
+    fetch('undone', {
+      method: 'post',
+      headers: {'Content-type':'application/json'},
+      body: JSON.stringify({"id":id})
+    }).then((res)=>{
+      res.text().then((text)=>{
+        const json = JSON.parse(text);
+        if(json.result === "success"){
+          reload();
+        }else{
+          alert("체크해제에 실패했습니다!\n이유:"+json.reason)
+        }
+      }
+    )}
+  )}
 
-              fetch('undone', {
-                method: 'post',
-                headers: {'Content-type':'application/json'},
-                body: JSON.stringify({"id":id})
-              }).then((res)=>{
-                res.text().then((text)=>{
-                  const json = JSON.parse(text);
-                  if(json.result === "success"){
-                    reload();
-                  }else{
-                    alert("체크해제에 실패했습니다!\n이유:"+json.reason)
-                  }
-                }
-              )}
-            )}
-
-    </script>
-  </body>
+  </script>
+</body>
 </html>
